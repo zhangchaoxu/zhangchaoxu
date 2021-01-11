@@ -1,0 +1,6 @@
+# https://docs.gitbook.com/integrations/github/content-configuration
+structure:
+  # index
+  readme: onex-wiki/README.md
+  # summary
+  summary: onex-wiki/SUMMARY.md
