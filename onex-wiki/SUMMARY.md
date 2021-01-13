@@ -18,6 +18,8 @@
   * [支付](Pay.md)
   * [多数据源](DynamicDatasource.md)
   * [MongDB支持](MongoDB.md)
+  * [Test](Test.md)
+  * [日志](Log.md)
 * [前端](portal.md)
   * [Iconfont](iconfont.md)
   * [接口调用](axios.md)
@@ -25,5 +27,5 @@
   * [自定义组件](VueComponents.md)
   * [UI和UX](UIAndUX.md)
   * [地图](Map.md)
-* [代码生成器](xcoder.md)
+* [代码生成器](coder.md)
 
