@@ -1,5 +1,5 @@
-# 多(动态)数据源
-本项目中多数据源的支持由[MybatisPlus Dynamic Datasource](https://mybatis.plus/guide/dynamic-datasource.html)提供。
+# 动态数据源
+本项目中动态数据源由[MybatisPlus Dynamic Datasource](https://dynamic-datasource.com/)实现。
 
 ## 使用方法：
 以dynamic-datasource与druid结合为例:
@@ -45,14 +45,14 @@ spring:
       datasource:
         master:
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/onex?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-          username: onex
-          password: onex
+          url: jdbc:mysql://127.0.0.1:3306/master?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          username: master
+          password: master
           druid:
             initial-size: 5
         slave_name:
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.2:3406/slave?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+          url: jdbc:mysql://127.0.0.2:3306/slave?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
           username: slave
           password: slave
           druid:
@@ -63,6 +63,7 @@ spring:
 master库作为默认库读取方式不变,其它库只要在实体对应ServiceImpl类定义或者方法定义加入@Ds注解即可。同时存在方法注解优先于类上注解。
 ```java
 import com.baomidou.dynamic.datasource.annotation.DS;
+
 @Service
 @DS("slave_name")
 public class AreaServiceImpl implements AreaService {}

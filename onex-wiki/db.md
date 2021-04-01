@@ -9,12 +9,12 @@ _注意_ 修改表中各个数据库中有区别的地方 _注意_ 修改Mapper�
 
 ## 表命名与字段设计规范
 
-1. 数据库名称、表名称、字段名称一律小写,用\_分割
-2. 遵守模块名称\_业务名称的形式,比如uc\_user
-3. 关联表使用两个表名连接方式，比如uc\_user\_role
-4. 建议所有表都带上id、deleted、create\_time、update\_time、create\_id、update\_id等标准字段
-5. 多租户表都带上tenant\_id和tenant\_name,其中tenant\_name为冗余租户名
-6. 表示时间的字段用xx\_time\(datetime\),表示日期的字段用xx\_date\(date\)
+1. 数据库名、表名、字段名一律小写,用_分割
+2. 遵守`模块名_业务名`的形式,比如`uc_user`
+3. 关联表使用两个表名连接方式，比如`uc_user_role`
+4. 建议所有表都带上id、deleted、create_time、update_time、create_id、update_id等标准字段
+5. 多租户表都带上tenant_id和tenant_name,其中tenant_name为冗余租户名
+6. 表示时间的字段用xx_time(datetime),表示日期的字段用xx_date(date)
 7. 索引命名:
    * pk_表名缩写_字段名: 为兼容多数据库,索引必须全库唯一
    * 唯一索引命名: uk_表名缩写_字段名
@@ -23,7 +23,7 @@ _注意_ 修改表中各个数据库中有区别的地方 _注意_ 修改Mapper�
 ## 主键
 
 数据主键id使用MyBatisPlus的ID_Worker，一律使用20位的unsigned tinyint，注意在pojo中使用Long定义  
-优点是兼具自增主键的连续性\(优化查询效率\)和uuid的不可推测性_    
+优点是兼具自增主键的连续性(优化查询效率)和uuid的不可推测性    
 注意\_ JavaScript无法处理Java的Long,会导致精度丢失,具体表现为主键最后两位永远为0,解决思路:Long 转为 String 返回 [更多文档](https://mybatis.plus/guide/logic-delete.html)
 
 ## 逻辑删除
