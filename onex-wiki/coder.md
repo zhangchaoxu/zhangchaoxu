@@ -1,8 +1,9 @@
 # 代码生成器
 
-参考[人人开源renren-generator](https://gitee.com/renrenio/renren-generator) 工具生成entity、xml、dao、service、vue、sql代码 结合\[xquick-rocket\]和\[xquick-satellite\]使用
+参考[人人开源renren-generator](https://gitee.com/renrenio/renren-generator) 工具生成entity、xml、dao、service、vue、sql代码 
+结合[onex-boot](http://portal.onex.nb6868.com)和[onex-portal](https://github.com/zhangchaoxu/onex-portal)使用
 
-代码生成器本身不需要依赖booster和api，可以独立运行
+* 注意：代码生成器本身不需要依赖booster和api，可以独立运行
 
 ### 部署使用
 

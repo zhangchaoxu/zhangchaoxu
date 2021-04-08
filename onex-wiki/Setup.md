@@ -1,47 +1,56 @@
-# 开发教程
+# How to Set Up
 
-## 启动项目
-1. 检出代码
-使用[Git工具](https://git-scm.com/)或[TortoiseGit](https://tortoisegit.org/)等工具从[GitHub](https://github.com/zhangchaoxu/onex)检出(checkout)源代码。
-也可以直接使用IDEA自带的Version Control工具，检查源代码。
-
-2. 使用IDE打开工程,以IDEA为例
-使用IDEA打开工程
-
-## 后端相关
+## 接口
 
 ## 技术准备
 * [SpringBoot](https://spring.io/projects/spring-boot/) 
 * [MyBatis-Plus](https://mybatis.plus/)    
 * [EasyPoi](https://gitee.com/lemur/easypoi)    
 * [Shiro](http://shiro.apache.org/)    
-* [activiti](https://www.activiti.org/)     
 * [Java Mail Sender](https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-email)
 
 ## 开发准备
-1. 使用JDK1.8+
-2. 建议使用Intellij IDEA开发
-2.1 [IDEA下载](https://www.jetbrains.com/idea/download/)
-3. 安装Lombok插件
-3.1 [Lombok作用及安装方法](https://projectlombok.org/)
-   
+1. 建议使用JDK1.8+
+2. 建议使用[Intellij IDEA](https://www.jetbrains.com/idea/)开发
+3. 在IDEA中安装[Lombok](https://projectlombok.org/)插件
 
-## 前端相关
+## 开发步骤
+1. 检出代码
+```shell
+git clone https://github.com/zhangchaoxu/onex-boot.git
+```
+2. 使用IDEA打开检出代码文件夹
+3. 创建MySQL数据库,并导入初始数据
+4. 修改onex-boot\api\src\main\resources\application-dev.yml中数据库的地址、帐号和密码
+5. 运行onex-boot\api\src\main\java\com\nb6868\onexboot\api\ApiApplication.java即可启动接口
+6. 访问`http://127.0.0.1:18181/onex-boot-api`即可得到api success的提示
+7. 项目集成了Swagger,访问`http://127.0.0.1:18181/onex-boot-api/swagger-ui/index.html`即可访问和调试接口
+8. 上述接口中端口18080和路径onex-boot-api,在onex-boot\api\src\main\resources\application.yml中配置
+
+### java开发规范
+详见[阿里巴巴Java开发手册](https://github.com/alibaba/p3c)
+
+## 前端
 
 ### 技术准备
 * [VUE](https://cn.vuejs.org/)
 * [ElementUI](https://element.eleme.cn/)
-* [Vant](https://youzan.github.io/vant/)
 
 ### 开发准备
 1. 安装[node 8.11+](https://nodejs.org/en/download/),建议安装最新的LTS版
 2. 安装IDE,比如Intellij IDEA,其它IDE也可以安装对应的插件
 3. 建议使用[cnpm](http://npm.taobao.org/)作为npm仓库
-4. 项目启动
-4.1 初始化安装`npm install`
-4.2 编译和开发热部署`npm run serve`
-4.3 编译和打包生产环境`npm run build`
-4.4 Lints检查`npm run lint`
+
+## 开发步骤
+1. 检出代码
+```shell
+git clone https://github.com/zhangchaoxu/onex-portal.git
+```
+2. 使用IDEA或者WebStorm等工具打开检出代码文件夹
+3. 初始化安装`cnpm install`,该步骤只需要初次执行即可
+4. 编译和开发热部署`cnpm run serve`
+5. 编译和打包生产环境`cnpm run build`
+6. Lints检查`cnpm run lint`
 
 ### vue开发规范
 详见[Vant风格指南](https://youzan.github.io/vant/#/zh-CN/style-guide)

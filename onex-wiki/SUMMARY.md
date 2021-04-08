@@ -1,7 +1,7 @@
 # Table of contents
 
 * [About Me](../README.md)
-* [How To Setup](Setup.md)
+* [Set Up](Setup.md)
 * [QA](QA.md)
 * [后端接口](boot.md)
   * [数据库设计规范和实现](db.md)
