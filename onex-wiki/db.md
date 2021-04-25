@@ -1,7 +1,8 @@
 # 数据库设计规范和实现
 
 程序开发基于MySQL5.7实现,理论上支持Oracle、SQLServer、DB2等其它数据库  
-_注意_ 修改表中各个数据库中有区别的地方 _注意_ 修改Mapper文件中是否有MySQL特有的查询语句
+_注意_ 修改表中各个数据库中有区别的地方 
+_注意_ 修改Mapper文件中是否有MySQL特有的查询语句
 
 ## 数据持久化实现
 
@@ -48,8 +49,8 @@ _注意_ 对于update方法只有update\(entity, updateWrapper\)才会自动填�
 
 ## 大小写敏感
 
-数据库设计中一律采用小写表名和字段名,其中定时任务默认创建表为大写,建议将mysql设置为大小写不敏感  
-修改/etc/my.cnf文件,在\[mysqld\]节点加入配置`lower_case_table_names = 1`,然后重启mysql\(`service mysqld restart`\)即可
+数据库设计中一律采用小写表名和字段名,其中定时任务默认创建表为大写,建议将mysql设置为大小写不敏感。  
+修改/etc/my.cnf文件,在[mysqld]节点加入配置`lower_case_table_names = 1`,然后重启mysql(`service mysqld restart`)即可
 
 ## ref
 
