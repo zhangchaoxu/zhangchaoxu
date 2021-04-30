@@ -65,20 +65,39 @@ BtPanel-网站
 
 6. 网站添加接口代理     
 BtPanel-网站(sub.foo.com)-设置-反向代理     
-添加目录为/api,目标地址为http://127.0.0.1:8800的代理      
-目的是将sub.foo.com/api的访问代理到http://127.0.0.1:8800/api
+添加代理目录为/xx-boot-api,目标地址为http://127.0.0.1:8800的代理      
+目的是将sub.foo.com/xx-boot-api的访问代理到http://127.0.0.1:8800/api
 
-7. 网站添加全局代理     
-BtPanel-网站(sub.foo.com)-设置-反向代理  
-添加目录为/,目标地址为http://127.0.0.1的代理      
-然后修改配置文件为
+7. 解决前端访问404，实际是Vue的router问题
 ```
 location /
 {
     try_files /$uri /$uri/ /index.html$args;
 }
 ```
-目的是为了解决Vue的router问题
+
+8. 增加对websocket的支持
+在上述反向代理的配置文件中添加
+```
+location /xxx-boot-api
+{
+    proxy_pass http://127.0.0.1:8800;
+    proxy_set_header Host $host;
+	# Upgrade for websocket
+    proxy_set_header Upgrade $http_upgrade;    
+    proxy_set_header Connection "Upgrade"; 
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    
+    add_header X-Cache $upstream_cache_status;
+    
+    #Set Nginx Cache
+    add_header Cache-Control no-cache;
+    expires 12h;
+}
+
+```
 
 ## 部署应用
 
