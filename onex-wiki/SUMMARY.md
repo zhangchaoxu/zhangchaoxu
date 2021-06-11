@@ -16,6 +16,7 @@
   * [第三方登录](UserOauth.md)
   * [数据存储](OSS.md)
   * [支付](Pay.md)
+  * [POI操作](Poi.md)
   * [多数据源](DynamicDatasource.md)
   * [MongDB支持](MongoDB.md)
   * [Test](Test.md)
