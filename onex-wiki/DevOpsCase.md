@@ -1,5 +1,5 @@
 # 运维实践
-以一种便捷和节省成本的实践方式(不是最佳实践)，部署OneX到一个Linxu服务器为例。
+以一种便捷和节省成本的实践方式(不是最佳实践),部署OneX前后端到一台Linxu服务器为例。
 
 基本策略
 
@@ -11,8 +11,7 @@
 1. 准备Linux服务器
 建议购买[阿里云](https://ecs-buy.aliyun.com/wizard#/prepay/cn-hangzhou)  
 预算充足选择[通用型](https://help.aliyun.com/document_detail/108490.html),预算有限则选择[突发性能实例](https://help.aliyun.com/document_detail/59977.html)
-操作系统选择CentOS 7.X    
-配置不低于1C2G1M,建议2C4G2M+
+操作系统选择CentOS 7.X,配置不低于1C2G1M,建议2C4G2M+
 
 
 2. 在阿里云后台该Linux的服务实例安全组中，配置以下放行规则   
@@ -41,7 +40,7 @@ password: pwd
   
 2. 安装必须软件		
 BtPanel-软件商城     
-安装所需软件Nginx 1.x/MySQL 5.x/Tomcat 8.x
+安装所需软件Nginx 1.x/MySQL 5.x
 
 3. 配置Mysql-设置Mysql为不区分大小写   
 BtPanel-软件商城-Mysql-设置-配置修改      
@@ -65,8 +64,8 @@ BtPanel-网站
 
 6. 网站添加接口代理     
 BtPanel-网站(sub.foo.com)-设置-反向代理     
-添加代理目录为/xx-boot-api,目标地址为http://127.0.0.1:8800的代理      
-目的是将sub.foo.com/xx-boot-api的访问代理到http://127.0.0.1:8800/api
+添加代理目录为/xx-boot-api,目标地址为http://127.0.0.1:18181代理      
+目的是将sub.foo.com/onex-boot-api的访问代理到http://127.0.0.1:18181/onex-boot-api
 
 7. 解决前端访问404，实际是Vue的router问题
 ```
@@ -79,9 +78,9 @@ location /
 8. 增加对websocket的支持
 在上述反向代理的配置文件中添加
 ```
-location /xxx-boot-api
+location /onex-boot-api
 {
-    proxy_pass http://127.0.0.1:8800;
+    proxy_pass http://127.0.0.1:18181;
     proxy_set_header Host $host;
 	# Upgrade for websocket
     proxy_set_header Upgrade $http_upgrade;    
@@ -97,6 +96,52 @@ location /xxx-boot-api
     expires 12h;
 }
 
+```
+
+9. 增加对静态文件读取的支持
+   在上述反向代理的配置文件中添加
+```
+location ~* \.(php|jsp|cgi|asp|aspx|gif|jpg|jpeg|js|css)$
+{
+	proxy_pass http://127.0.0.1:18181;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header REMOTE-HOST $remote_addr;
+}
+
+```
+完整的代理配置文件如下
+```
+
+#PROXY-START/onex-boot-api
+location ~* \.(php|jsp|cgi|asp|aspx|gif|jpg|jpeg|js|css)$
+{
+	proxy_pass http://127.0.0.1:18181;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header REMOTE-HOST $remote_addr;
+}
+location /onex-boot-api
+{
+    proxy_pass http://127.0.0.1:18181;
+    proxy_set_header Host $host;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection "Upgrade";
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    
+    add_header X-Cache $upstream_cache_status;
+    
+    #Set Nginx Cache
+    
+    	add_header Cache-Control no-cache;
+    expires 12h;
+}
+
+#PROXY-END/onex-boot-api
 ```
 
 ## 部署应用
