@@ -6,8 +6,6 @@
 * [后端接口](boot.md)
   * [数据库设计规范和实现](db.md)
   * [接口规范](Restful.md)
-  * [DevOps](DevOps.md)
-  * [运维实践](DevOpsCase.md)
   * [json解析器](json.md)
   * [数据字典](Dict.md)
   * [参数校验](validator.md)
@@ -28,5 +26,8 @@
   * [自定义组件](VueComponents.md)
   * [UI和UX](UIAndUX.md)
   * [地图](Map.md)
+* [DevOps](DevOps.md)
+  * [运维实践](DevOpsCase.md)
+  * [Linux Cheat Sheet](Linux.md)
 * [代码生成器](coder.md)
 
