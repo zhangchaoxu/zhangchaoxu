@@ -60,3 +60,13 @@ public class DataTest {
 
 }
 ```
+
+## 异常捕捉
+
+### 有返回值
+
+### 无返回值
+
+
+# ref
+[Spring @Async的异常处理](https://www.cnblogs.com/jpfss/p/10272085.html)

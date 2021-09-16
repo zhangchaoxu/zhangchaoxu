@@ -32,5 +32,6 @@
 * [DevOps](DevOps.md)
   * [运维实践](DevOpsCase.md)
   * [Linux Cheat Sheet](Linux.md)
+  * [MySQL Cheat Sheet](MySQL.md)
 * [代码生成器](coder.md)
 
