@@ -56,4 +56,5 @@ _注意_ 对于update方法只有update\(entity, updateWrapper\)才会自动填�
 
 * [并发扣款，如何保证数据的一致性？](https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651962738&idx=1&sn=d2d91a380bad06af9f7b9f7a80db26b3)
 * [并发扣款一致性，幂等性问题，这个话题还没聊完！！！](https://mp.weixin.qq.com/s/xXju0y64KKUiD06QE0LoeA)
+* [MyBatis-plus 从入门到入土](https://mp.weixin.qq.com/s/SBkYZrBbGEgBe09erNr7tg)
 
