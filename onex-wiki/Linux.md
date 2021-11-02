@@ -36,8 +36,9 @@ yum install -y cronolog httpd
 ```
 
 ### 启动java springboot程序
+使用cronolog按小时分割日志
 ```
-nohup java -Dspring.profiles.active=prod -jar api.jar --server.port=8080 --server.servlet.context-path=/api 2>&1 | cronolog log.%Y-%m-%d.out >> /dev/null &
+nohup java -Dspring.profiles.active=prod -jar api.jar --server.port=8080 --server.servlet.context-path=/api 2>&1 | cronolog ./log/%Y-%m-%d_%H.out >> /dev/null &
 ```
 
 ### 开机启动
@@ -48,3 +49,58 @@ nohup java -Dspring.profiles.active=prod -jar api.jar --server.port=8080 --serve
 4. 启动日志可以查看这里/var/log/boot.log
 ```
 
+### 修改本地日志保存时长,比如半年
+1. 编辑文件
+```shell
+vi /etc/logrotate.conf
+```
+将其中
+```shell
+# keep 4 weeks worth of backlogs
+rotate 26
+
+......
+
+# no packages own wtmp and btmp -- we'll rotate them here
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+        minsize 1M
+    rotate 3
+}
+
+/var/log/btmp {
+    missingok
+    monthly
+    create 0600 root utmp
+    rotate 1
+}
+```
+
+2. 重启服务
+```shell
+sudo systemctl restart rsyslog
+# service syslog restart
+```
+
+### 关闭端口
+1. 查找端口占用
+```shell
+netstat -anp|grep {port}
+```
+
+2. 杀死占用进程PID
+```shell
+kill -9 {pid}
+```
+
+### 修改密码长度
+1. 查找端口占用
+```shell
+netstat -anp|grep {port}
+```
+
+2. 杀死占用进程PID
+```shell
+kill -9 {pid}
+```

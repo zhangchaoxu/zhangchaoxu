@@ -1,5 +1,9 @@
 # MySQL Cheat Sheet
 
+### 大小写敏感
+mysql设置为大小写不敏感 
+方法：修改/etc/my.cnf文件,在[mysqld]节点加入配置`lower_case_table_names = 1`,然后重启mysql(`service mysqld restart`)
+
 ### 复制表结构
 ```
 CREATE TABLE IF NOT EXISTS db1.a LIKE db2.a
