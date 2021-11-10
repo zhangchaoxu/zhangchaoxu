@@ -14,9 +14,11 @@ _注意_ 修改Mapper文件中是否有MySQL特有的查询语句
 2. 遵守`模块名_业务名`的形式,比如`uc_user`
 3. 关联表使用两个表名连接方式，比如`uc_user_role`
 4. 建议所有表都带上id、deleted、create_time、update_time、create_id、update_id等标准字段
-5. 多租户表都带上tenant_id和tenant_name,其中tenant_name为冗余租户名
+5. 多租户表都带上tenant_code
 6. 表示时间的字段用xx_time(datetime),表示日期的字段用xx_date(date)
-7. 索引命名:
+7. 默认使用InnoDB引擎
+8. 默认字符集utf8mb4,默认排序utf8mb4_general_ci
+9. 索引命名:
    * pk_表名缩写_字段名: 为兼容多数据库,索引必须全库唯一
    * 唯一索引命名: uk_表名缩写_字段名
    * 普通索引命令: idx_表名缩写_字段名
